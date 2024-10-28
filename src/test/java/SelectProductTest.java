@@ -1,5 +1,6 @@
-import static org.hamcrest.CoreMatchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.time.Duration;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,7 +8,10 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SelectProductTest {
 
@@ -45,7 +49,12 @@ public class SelectProductTest {
     assertEquals(driver.findElement(By.cssSelector("*[data-test=\"inventory-item-price\"]")).getText(), "$29.99");
     driver.findElement(By.cssSelector("*[data-test=\"remove-sauce-labs-backpack\"]")).click();
     driver.findElement(By.id("react-burger-menu-btn")).click();
-    driver.findElement(By.cssSelector("*[data-test=\"logout-sidebar-link\"]")).click();
+    
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(4000));
+    // driver.findElement(By.cssSelector("*[data-test=\"logout-sidebar-link\"]")).click();
+    WebElement logoutLink = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("*[data-test=\"logout-sidebar-link\"]")));
+    logoutLink.click();
+
     driver.close();
   }
 }
