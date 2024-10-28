@@ -29,7 +29,8 @@ public class SelectProductTest {
   @BeforeEach
   public void setUp() {
     driver = new ChromeDriver();
-    js = (JavascriptExecutor) driver;
+    driver.get("https://www.saucedemo.com/");
+    driver.manage().window().maximize();
   }
 
   @AfterEach
@@ -39,8 +40,6 @@ public class SelectProductTest {
 
   @Test
   public void selecionarProduto() {
-    driver.get("https://www.saucedemo.com/");
-    driver.manage().window().setSize(new Dimension(1256, 795));
     driver.findElement(By.cssSelector("*[data-test=\"username\"]")).sendKeys("standard_user");
     driver.findElement(By.cssSelector("*[data-test=\"password\"]")).sendKeys("secret_sauce");
     driver.findElement(By.cssSelector("*[data-test=\"login-button\"]")).click();
