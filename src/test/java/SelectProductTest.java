@@ -1,5 +1,7 @@
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.core.IsNot.not;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -43,18 +45,18 @@ public class SelectProductTest {
     driver.findElement(By.cssSelector("*[data-test=\"username\"]")).sendKeys("standard_user");
     driver.findElement(By.cssSelector("*[data-test=\"password\"]")).sendKeys("secret_sauce");
     driver.findElement(By.cssSelector("*[data-test=\"login-button\"]")).click();
-    assertThat(driver.findElement(By.cssSelector("*[data-test=\"title\"]")).getText(), is("Products"));
+    assertEquals(driver.findElement(By.cssSelector("*[data-test=\"title\"]")).getText(), is("Products"));
     driver.findElement(By.cssSelector("*[data-test=\"inventory-item-name\"]")).click();
-    assertThat(driver.findElement(By.cssSelector("*[data-test=\"back-to-products\"]")).getText(), is("Back to products"));
-    assertThat(driver.findElement(By.cssSelector("*[data-test=\"inventory-item-name\"]")).getText(), is("Sauce Labs Backpack"));
-    assertThat(driver.findElement(By.cssSelector("*[data-test=\"inventory-item-price\"]")).getText(), is("$29.99"));
+    assertEquals(driver.findElement(By.cssSelector("*[data-test=\"back-to-products\"]")).getText(), is("Back to products"));
+    assertEquals(driver.findElement(By.cssSelector("*[data-test=\"inventory-item-name\"]")).getText(), is("Sauce Labs Backpack"));
+    assertEquals(driver.findElement(By.cssSelector("*[data-test=\"inventory-item-price\"]")).getText(), is("$29.99"));
     driver.findElement(By.cssSelector("*[data-test=\"add-to-cart\"]")).click();
-    assertThat(driver.findElement(By.cssSelector("*[data-test=\"shopping-cart-badge\"]")).getText(), is("1"));
+    assertEquals(driver.findElement(By.cssSelector("*[data-test=\"shopping-cart-badge\"]")).getText(), is("1"));
     driver.findElement(By.cssSelector("*[data-test=\"shopping-cart-link\"]")).click();
-    assertThat(driver.findElement(By.cssSelector("*[data-test=\"title\"]")).getText(), is("Your Cart"));
-    assertThat(driver.findElement(By.cssSelector("*[data-test=\"item-quantity\"]")).getText(), is("1"));
-    assertThat(driver.findElement(By.cssSelector("*[data-test=\"inventory-item-name\"]")).getText(), is("Sauce Labs Backpack"));
-    assertThat(driver.findElement(By.cssSelector("*[data-test=\"inventory-item-price\"]")).getText(), is("$29.99"));
+    assertEquals(driver.findElement(By.cssSelector("*[data-test=\"title\"]")).getText(), is("Your Cart"));
+    assertEquals(driver.findElement(By.cssSelector("*[data-test=\"item-quantity\"]")).getText(), is("1"));
+    assertEquals(driver.findElement(By.cssSelector("*[data-test=\"inventory-item-name\"]")).getText(), is("Sauce Labs Backpack"));
+    assertEquals(driver.findElement(By.cssSelector("*[data-test=\"inventory-item-price\"]")).getText(), is("$29.99"));
     driver.findElement(By.cssSelector("*[data-test=\"remove-sauce-labs-backpack\"]")).click();
     driver.findElement(By.id("react-burger-menu-btn")).click();
     driver.findElement(By.cssSelector("*[data-test=\"logout-sidebar-link\"]")).click();
